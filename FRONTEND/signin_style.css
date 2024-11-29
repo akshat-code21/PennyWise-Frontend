@@ -1,0 +1,86 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "Inter", Arial, Helvetica, sans-serif;   
+    box-sizing: border-box;
+    background-color: #E4EAE1;
+}
+.nav-bar{
+    height: 60px;
+    width: 100%;
+    padding-top: 20px;
+    display: flex;
+    align-items: center;
+}
+.nav-logo{
+    width: 150px;
+    height: 150px;
+    cursor: pointer;
+    /* padding-top: 20px; */
+    margin-left: 125px;
+}
+.nav-name{
+    width: 200px;
+}
+.nav-name h1{
+    color: #40916C;
+    text-align: center;
+    font-size: 40px;
+    margin-left: -30px;
+}
+.container{
+    width: 360px;
+    height: auto;
+    background-color: #6E7F6D;
+    margin: auto;
+    border: 0px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 80px;
+    padding: 40px;
+    gap: 30px;
+}
+.container h2{
+    font-size: 36px;
+    font-weight: 700;
+    color: white;
+    background-color: transparent;
+}
+label{
+    color: white;
+    background-color: transparent;
+    font-size: 20px;
+    font-weight: 500;
+}
+.name,.email,.password{
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+}
+input{
+    border: 0px;
+    padding: 10px;
+    border-radius: 3px;
+    background-color: white;
+}
+.login a{
+    text-decoration: none,underline;
+    color: rgb(20, 20, 184);
+    background-color: transparent;
+}
+.login {
+    width: 100%;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    color: white;
+    background-color: transparent;
+    margin-top: 20px;
+}
+.login span{
+    background-color: transparent;
+}
