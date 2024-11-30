@@ -25,8 +25,9 @@
 .nav-name h1{
     color: #40916C;
     text-align: center;
-    font-size: 40px;
-    margin-left: -30px;
+    font-size: 30px;
+    margin-left: -100px;
+    background-color: transparent;
 }
 .container{
     width: 360px;
@@ -42,7 +43,12 @@
     padding: 40px;
     gap: 30px;
 }
+.container:hover {
+    box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.2);
+    transition-duration: 0.5s;
+}
 .container h2{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 36px;
     font-weight: 700;
     color: white;
@@ -52,20 +58,23 @@ label{
     color: white;
     background-color: transparent;
     font-size: 20px;
-    font-weight: 500;
+    font-weight: 600;
 }
 .name,.email,.password{
-    background-color: transparent;
+    background-color: transparent !important;
+    border: none !important ;
     display: flex;
     flex-direction: column;
     gap: 5px;
     width: 100%;
 }
 input{
-    border: 0px;
+    border: none; 
     padding: 10px;
-    border-radius: 3px;
+    border-radius: 5px;
     background-color: white;
+    color: black;
+    font-weight: 600;
 }
 .login a{
     text-decoration: none,underline;
@@ -84,3 +93,11 @@ input{
 .login span{
     background-color: transparent;
 }
+input:focus{
+    border: none;
+    outline: none;
+    border: 3px solid #1b573d;
+}
+
+
+
