@@ -1,0 +1,54 @@
+<div class="modal" id = "mod">
+  <div class="modal-content">
+
+    <div
+      class="relative flex flex-col max-h-[500px] max-w-[500px] max-w-3xl bg-[#FFFFFF] group/design-root overflow-x-hidden border-2 rounded-xl"
+    >
+      <span id = "closeBtnM">&times;</span>
+      <div class="layout-container flex h-full grow flex-col">
+        <div class="flex items-center justify-center flex-1 px-4 py-10">
+          <div class="layout-content-container flex flex-col w-full max-w-lg py-5">
+            <h1 class="text-[#1C160C] tracking-light text-[32px] font-bold leading-tight px-4 text-left pb-3 pt-6">Modify Expense</h1>
+            <div class="flex flex-wrap max-w-lg items-end gap-4 px-4 py-3">
+              <label class="flex flex-col min-w-40 flex-1">
+                <input
+                  placeholder="Enter expense name"
+                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#1C160C] focus:outline-0 focus:ring-0 border border-[#E9DFCE] bg-[#FFFFFF] focus:border-[#E9DFCE] h-14 placeholder:text-[#A18249] p-[15px] text-base font-normal leading-normal"
+                />
+              </label>
+            </div>
+            <div class="flex flex-wrap max-w-lg items-end gap-4 px-4 py-3">
+              <label class="flex flex-col min-w-40 flex-1">
+                <select
+                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#1C160C] focus:outline-0 focus:ring-0 border border-[#E9DFCE] bg-[#FFFFFF] focus:border-[#E9DFCE] h-14 bg-[image:--select-button-svg] placeholder:text-[#A18249] p-[15px] text-base font-normal leading-normal"
+                >
+                  <option value="" disabled selected>Add category</option>
+                  <option value="shopping">Shopping</option>
+                  <option value="health">Health</option>
+                  <option value="travel">Travel</option>
+                  <option value="food">Food</option>
+                  <option value="entertainment">Entertainment</option>
+                </select>
+              </label>
+            </div>
+            <div class="flex flex-wrap max-w-lg items-end gap-4 px-4 py-3">
+              <label class="flex flex-col min-w-40 flex-1">
+                <input
+                  placeholder="Enter amount"
+                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#1C160C] focus:outline-0 focus:ring-0 border border-[#E9DFCE] bg-[#FFFFFF] focus:border-[#E9DFCE] h-14 placeholder:text-[#A18249] p-[15px] text-base font-normal leading-normal"
+                />
+              </label>
+            </div>
+            <div class="flex px-4 py-3 justify-center">
+              <button
+                class="flex min-w-[84px] max-w-lg cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-5 flex-1 bg-[#019863] text-[#FFFFFF] text-base font-bold leading-normal tracking-[0.015em]"
+              >
+                <span class="truncate">Modify Expense</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
