@@ -273,22 +273,23 @@ header{
 footer .container{
     height: 300px;
     background-color: #2F3E46;
-    padding: 20px 100px 20px 50px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    padding: 20px 50px 60px 50px;
 }
 footer .foot{
     height: auto;
-    /* width: 100%; */
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 10px 30px 10px;
 }
 .foot .left{
     height: auto;
     width: 30%;
+    justify-content: center;
+    align-content: center;
     /* border-right: 1px solid white; */
-    /* padding-left: 60px; */
+    padding-left: 100px;
 }
 .foot-logo{
     /* margin-left: 100px; */
@@ -307,6 +308,19 @@ footer .foot{
 }
 .foot .right{
     width: 70%;
+    padding-left: 50px;
+}
+.foot .right .flex{
+    height: 100%;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+.foot .right .flex a{
+    text-decoration: none;
+    color: white;
 }
 
 @media (max-width: 768px) {

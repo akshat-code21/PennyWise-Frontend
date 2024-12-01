@@ -1,7 +1,7 @@
 *{
     margin: 0;
     padding: 0;
-    font-family: "Inter", Arial, Helvetica, sans-serif;   
+    font-family: 'Plus Jakarta Sans',"Inter", Arial, Helvetica, sans-serif;   
     box-sizing: border-box;
     background-color: #E4EAE1;
 }
@@ -25,6 +25,7 @@
 .nav-name h1{
     color: #40916C;
     text-align: center;
+    font-family: 'Inter';
     font-size: 30px;
     margin-left: -100px;
     background-color: transparent;
@@ -74,6 +75,22 @@ input{
     background-color: white;
     color: black;
     font-weight: 600;
+}
+.log-in-btn{
+    background-color: #0b3d26;
+    color: white;
+    border: 0px;
+    border-radius: 5px;
+    padding: 8px 15px;
+    font-weight: 500;
+    font-size: 15px;
+    cursor: pointer;
+}
+.log-in-btn:hover{
+    transform: scale(1.1) translateZ(20px);
+}
+.container a{
+    background-color: transparent;
 }
 .signup a{
     text-decoration: none,underline;
