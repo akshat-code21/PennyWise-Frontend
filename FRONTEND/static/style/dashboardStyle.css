@@ -112,7 +112,7 @@ img {
 
 
 
-tr:hover {
+.rows:hover {
   background-color: #f1f8e9; /* Light green hover effect */
 }
 
