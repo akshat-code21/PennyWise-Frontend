@@ -4,8 +4,9 @@ const mod = document.querySelector('#mod');
 const closeBtnM = document.getElementById("closeBtnM");
 modify.forEach((i) => {
   i.onclick = function () {
-    console.log('hello')
-    mod.style.display = "block"; // Show modal
+    mod.style.display = "flex"; // Show modal
+    mod.style.justifyContent = "center"
+    mod.style.alignItems = "center"
     overlay.style.display = "block"; // Show overlay to darken background
   }
 })
@@ -13,5 +14,7 @@ modify.forEach((i) => {
 
 closeBtnM.onclick = function() {
   mod.style.display = "none"; // Hide modal
+  mod.style.justifyContent = ""
+  mod.style.alignItems = ""
   overlay.style.display = "none"; // Hide overlay
 }
