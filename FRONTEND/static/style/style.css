@@ -238,15 +238,11 @@ header{
 }
 .sec-4 .right{
     width: 60%;
-    padding-top: 50px;
-    padding-left: 40px;
+    /* padding-top: -px; */
+    /* padding-left: 40px; */
 }
 .sec-4 .right .pc{
-    width: 800px;
     position: absolute;
-}
-.sec-4 .right .dashboard{
-    position: relative;
 }
 .sec-4 .left .heading h2{
     font-size: 55px;
@@ -271,9 +267,9 @@ header{
 
 
 footer .container{
-    height: 300px;
+    height: auto;
     background-color: #2F3E46;
-    padding: 20px 50px 60px 50px;
+    padding: 0px 50px 10px 50px;
 }
 footer .foot{
     height: auto;
@@ -315,12 +311,21 @@ footer .foot{
     width: auto;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
+    gap: 200px;
 }
 .foot .right .flex a{
     text-decoration: none;
     color: white;
+}
+.foot .right .contact-us-links{
+    height: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding-top: 20px;
+    margin-left: -35px;
 }
 
 @media (max-width: 768px) {
