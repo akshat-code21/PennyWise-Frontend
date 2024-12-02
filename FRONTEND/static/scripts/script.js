@@ -31,4 +31,4 @@ overlay.onclick = function() {
   popup.style.display = "none";
   overlay.style.display = "none";
 }
-console.log("hello");
+// console.log("hello");
