@@ -1,8 +1,11 @@
 <%- include('partials/header') %>
 <div class="px-40 flex flex-1 justify-center py-5">
 <%-include('partials/buttons') %>
-<div class="chart-container" style="max-width: 400px; max-height: 400px;">
+<div id="chartContainer" class="chart-container" style="max-width: 400px; max-height: 400px;">
     <canvas id="expensePieChart"></canvas>
+    <div id="noExpensesMessage" class="hidden text-center text-[#40916C] text-lg font-bold p-5">
+        No expenses added yet
+    </div>
 </div>
 <div class="px-4 py-3 @container">
   <div class="flex overflow-hidden rounded-xl border border-[#40916C] bg-[#FFFFFF]">
@@ -10,36 +13,13 @@
         <thead>
             <tr class="bg-[#40916C]">
             <th class="px-4 py-3 text-left text-[#FFFFFF] w-[400px] text-lg font-bold leading-normal">Index</th>
-            <th class="px-4 py-3 text-left text-[#FFFFFF] w-[400px] text-lg font-bold leading-normal">Expense Category</th>
-            <th class="px-4 py-3 text-left text-[#FFFFFF] w-[400px] text-lg font-bold leading-normal">Amount</th>
+            <th class="px-4 py-3 text-left text-[#FFFFFF] w-[400px] text-lg font-bold leading-normal">Category</th>
+            <th class="px-4 py-3 text-left text-[#FFFFFF] w-[400px] text-lg font-bold leading-normal">Total Amount</th>
+            <th class="px-4 py-3 text-left text-[#FFFFFF] w-[400px] text-lg font-bold leading-normal">Number of Expenses</th>
             </tr>
         </thead>
-        <tbody>
-            <tr class="border-t border-[#40916C] rows">
-            <td class="px-4 py-3 text-left text-[#40916C] w-[400px] text-sm font-medium leading-normal">1</td>
-            <td class="px-4 py-3 text-left text-[#40916C] w-[400px] text-sm font-medium leading-normal">Shopping</td>
-            <td class="px-4 py-3 text-left text-[#40916C] w-[400px] text-sm font-medium leading-normal">$200</td>
-            </tr>
-            <tr class="border-t border-[#40916C] rows">
-            <td class="px-4 py-3 text-left text-[#40916C] w-[400px] text-sm font-medium leading-normal">2</td>
-            <td class="px-4 py-3 text-left text-[#40916C] w-[400px] text-sm font-medium leading-normal">Health</td>
-            <td class="px-4 py-3 text-left text-[#40916C] w-[400px] text-sm font-medium leading-normal">$100</td>
-            </tr>
-            <tr class="border-t border-[#40916C] rows">
-            <td class="px-4 py-3 text-left text-[#40916C] w-[400px] text-sm font-medium leading-normal">3</td>
-            <td class="px-4 py-3 text-left text-[#40916C] w-[400px] text-sm font-medium leading-normal">Travel</td>
-            <td class="px-4 py-3 text-left text-[#40916C] w-[400px] text-sm font-medium leading-normal">$150</td>
-            </tr>
-            <tr class="border-t border-[#40916C] rows">
-            <td class="px-4 py-3 text-left text-[#40916C] w-[400px] text-sm font-medium leading-normal">4</td>
-            <td class="px-4 py-3 text-left text-[#40916C] w-[400px] text-sm font-medium leading-normal">Food</td>
-            <td class="px-4 py-3 text-left text-[#40916C] w-[400px] text-sm font-medium leading-normal">$120</td>
-            </tr>
-            <tr class="border-t border-[#40916C] rows">
-            <td class="px-4 py-3 text-left text-[#40916C] w-[400px] text-sm font-medium leading-normal">5</td>
-            <td class="px-4 py-3 text-left text-[#40916C] w-[400px] text-sm font-medium leading-normal">Entertainment</td>
-            <td class="px-4 py-3 text-left text-[#40916C] w-[400px] text-sm font-medium leading-normal">$130</td>
-            </tr>
+        <tbody id="expenseTableBody">
+            <!-- Data will be dynamically inserted here -->
         </tbody>
     </table>
   </div>

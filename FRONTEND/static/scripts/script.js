@@ -16,6 +16,43 @@ btn.onclick = function() {
   btn.style.backgroundColor = '#019863';
   btn.style.color = '#ffffff';
 }
+let submitAddExpenseBtn = document.querySelector('.submitAddExpenseBtn')
+submitAddExpenseBtn.addEventListener('click',(e)=>{
+  e.preventDefault();
+  let expenseNameInput = document.querySelector('.expenseNameInput')
+  let expenseName = expenseNameInput.value;
+  let categoryDropdown = document.querySelector('.categorySelect')
+  let category = categoryDropdown.value;
+  let amountInput = document.querySelector('.amountInput')
+  let amount = amountInput.value;
+  addExpense(expenseName,category,amount)
+})
+const addExpense = async(expenseName,category,amount)=>{ 
+  try {
+    let response = await fetch('http://localhost:3000/api/v1/expenses/',{
+      method : "POST",
+      headers : {
+        'Content-Type': 'application/json',
+        'token' : localStorage.getItem('token')
+      },
+      body:JSON.stringify({description : expenseName,amount : Number(amount),category})
+    });
+    let data = await response.json();
+    if (data.message === "expense added") {
+      
+      popup.style.display = "none";
+      overlay.style.display = "none";
+      document.querySelector('.expenseNameInput').value = '';
+      document.querySelector('.categorySelect').value = '';
+      document.querySelector('.amountInput').value = '';
+      await initializeDashboard();
+    }
+    alert(data.message);
+  } catch (error) {
+    console.error('Error adding expense:', error);
+    alert('Failed to add expense');
+  }
+}
 // When the user clicks on <span> (x), close the modal and hide overlay
 closeBtn.onclick = function() {
   popup.style.display = "none"; // Hide modal
@@ -31,4 +68,3 @@ overlay.onclick = function() {
   popup.style.display = "none";
   overlay.style.display = "none";
 }
-// console.log("hello");
