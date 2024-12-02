@@ -3,11 +3,11 @@
     padding: 0;
     font-family: 'Plus Jakarta Sans',"Inter", Arial, Helvetica, sans-serif;   
     box-sizing: border-box;
-    background-color: #E4EAE1;
 }
 .nav-bar{
-    height: 60px;
+    height: 76px;
     width: 100%;
+    background-color: #E4EAE1;
     padding-top: 20px;
     display: flex;
     align-items: center;

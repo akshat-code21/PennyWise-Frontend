@@ -29,6 +29,9 @@ app.get('/dashboard', (req, res) => {
 app.get("/detailExpense", (req, res) => {
     res.render("detailExpense");
 });
+app.get("/privacyPolicy",(req,res)=>{
+    res.render("privacyPolicy");
+})
 // Start the server
 app.listen(8080, () => {
     console.log("Server is listening on port 8080");
