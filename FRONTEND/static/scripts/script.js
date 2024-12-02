@@ -39,13 +39,21 @@ const addExpense = async(expenseName,category,amount)=>{
     });
     let data = await response.json();
     if (data.message === "expense added") {
-      
+      // Close modal after successful addition
       popup.style.display = "none";
       overlay.style.display = "none";
+      
+      // Clear the form
       document.querySelector('.expenseNameInput').value = '';
       document.querySelector('.categorySelect').value = '';
       document.querySelector('.amountInput').value = '';
-      await initializeDashboard();
+      
+      // Check which page we're on and refresh accordingly
+      if (window.initializeDashboard) {
+        await window.initializeDashboard();
+      } else if (window.initializeDetailPage) {
+        await window.initializeDetailPage();
+      }
     }
     alert(data.message);
   } catch (error) {

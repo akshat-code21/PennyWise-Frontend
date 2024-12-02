@@ -52,7 +52,7 @@ function renderExpenseTable(expenses) {
         ${formattedCategory}
       </td>
       <td class="px-4 py-3 text-left text-[#40916C] w-[400px] text-sm font-medium leading-normal">
-        $${data.total}
+        ₹${data.total}
       </td>
       <td class="px-4 py-3 text-left text-[#40916C] w-[400px] text-sm font-medium leading-normal">
         ${data.count} expense${data.count !== 1 ? "s" : ""}
