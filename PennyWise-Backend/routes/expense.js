@@ -8,7 +8,7 @@ const {z} = require('zod');
 const expensePayloadSchema = z.object({
   amount : z.number(),
   category : z.string(),
-  description : z.string().maxLength(20)
+  description : z.string()
 })
 expenseRouter.get("/", userMiddleWare, async (req, res) => {
   try {

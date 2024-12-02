@@ -13,10 +13,9 @@ const UserSchema = new Schema({
 const ExpenseSchema = new Schema({
   amount: Number,
   category: String,
-  date: { type: Date, default: Date.now },
   description: String,
-  user: { type: ObjectId, ref: 'Users', required: true }  // Changed from userId
-});
+  user: { type: ObjectId, ref: 'Users', required: true }
+}, { timestamps: true });
 const InsightsSchema = new Schema({
   user: { type: ObjectId, ref: 'Users', required: true },
   type: String,

@@ -1,22 +1,79 @@
-const Delete = document.querySelectorAll('.Delete');
+document.addEventListener('DOMContentLoaded', function() {
+    const deleteModal = document.getElementById("deleteModal");
+    const deleteOverlay = document.getElementById("deleteOverlay");
+    let currentExpenseId = null;
 
-const Del = document.querySelector('#Del');
-const cancelBtn = document.querySelector(".cancelBtn");
-const DeleteBtn = document.querySelector(".DeleteBtn");
-Delete.forEach((i) => {
-  i.onclick = function () {
-    Del.style.display = "block"; // Show modal
-    overlay.style.display = "block"; // Show overlay to darken background
-  }
-})
+    if (!deleteModal || !deleteOverlay) {
+        console.error('Delete modal elements not found:', {
+            deleteModal: !!deleteModal,
+            deleteOverlay: !!deleteOverlay
+        });
+        return;
+    }
 
+    // When user clicks Delete link
+    document.addEventListener('click', function(e) {
+        if (e.target && e.target.classList.contains('Delete')) {
+            e.preventDefault();
+            currentExpenseId = e.target.dataset.expenseId;
+            
+            // Show delete confirmation modal
+            deleteModal.style.display = "flex";
+            deleteModal.style.justifyContent = "center";
+            deleteModal.style.alignItems = "center";
+            deleteOverlay.style.display = "block";
+        }
+    });
 
-cancelBtn.onclick = function() {
-  Del.style.display = "none"; // Hide modal
-  overlay.style.display = "none"; // Hide overlay
-}
+    // When user confirms delete
+    const confirmDeleteBtn = document.querySelector('.confirmDelete');
+    if (confirmDeleteBtn) {
+        confirmDeleteBtn.addEventListener('click', async function() {
+            if (!currentExpenseId) return;
 
-DeleteBtn.onclick = function() {
-  Del.style.display = "none"; // Hide modal
-  overlay.style.display = "none"; // Hide overlay
-}
+            try {
+                const response = await fetch(`http://localhost:3000/api/v1/expenses/${currentExpenseId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'token': localStorage.getItem('token')
+                    }
+                });
+
+                const data = await response.json();
+                if (data.message === "expense deleted") {
+                    // Close modal
+                    deleteModal.style.display = "none";
+                    deleteOverlay.style.display = "none";
+                    
+                    // Refresh the table
+                    if (window.initializeDashboard) {
+                        await window.initializeDashboard();
+                    } else if (window.initializeDetailPage) {
+                        await window.initializeDetailPage();
+                    }
+                }
+                alert(data.message);
+            } catch (error) {
+                console.error('Error deleting expense:', error);
+                alert('Failed to delete expense');
+            }
+        });
+    }
+
+    // When user cancels delete
+    const cancelDeleteBtn = document.querySelector('.cancelDelete');
+    if (cancelDeleteBtn) {
+        cancelDeleteBtn.addEventListener('click', function() {
+            deleteModal.style.display = "none";
+            deleteOverlay.style.display = "none";
+            currentExpenseId = null;
+        });
+    }
+
+    // When user clicks outside the modal
+    deleteOverlay.addEventListener('click', function() {
+        deleteModal.style.display = "none";
+        deleteOverlay.style.display = "none";
+        currentExpenseId = null;
+    });
+});
