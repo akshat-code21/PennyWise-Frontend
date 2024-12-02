@@ -3,7 +3,7 @@ const modify = document.querySelectorAll('.Modify');
 const mod = document.querySelector('#mod');
 const closeBtnM = document.getElementById("closeBtnM");
 
-document.addEventListener('click', function(e) {
+document.addEventListener('click', async function(e) {
     if (e.target && e.target.classList.contains('Modify')) {
         e.preventDefault();
         const expenseId = e.target.dataset.expenseId;
@@ -12,7 +12,7 @@ document.addEventListener('click', function(e) {
         // Get expense details from the row
         const description = row.cells[0].textContent;
         const category = row.cells[1].textContent.toLowerCase();
-        const amount = row.cells[3].textContent.replace('$', '');
+        const amount = row.cells[3].textContent.replace('₹', '');
 
         // Fill the modify form with current values
         document.querySelector('#mod input[placeholder="Enter expense name"]').value = description;
@@ -66,7 +66,7 @@ document.querySelector('#mod button').addEventListener('click', async function(e
             overlay.style.display = "none";
             
             // Refresh the table
-            initializeDetailPage();
+            await initializeDetailPage();
         }
         alert(data.message);
     } catch (error) {

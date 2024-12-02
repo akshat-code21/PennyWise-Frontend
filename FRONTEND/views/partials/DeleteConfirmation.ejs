@@ -1,32 +1,31 @@
-<div class="modal" id = "Del">
+<div class="modal" id="deleteModal">
     <div class="modal-content">
-
-        <div
-        class="relative flex flex-col max-h-[500px] max-w-[500px] max-w-3xl bg-[#FFFFFF] group/design-root overflow-x-hidden border-2 rounded-xl"
-        >
+        <div class="relative flex flex-col max-h-[500px] max-w-[500px] max-w-3xl bg-[#FFFFFF] group/design-root overflow-x-hidden border-2 rounded-xl">
             <div class="layout-container flex h-full grow flex-col">
                 <div class="flex items-center justify-center flex-1 px-4 py-10">
-                <div class="layout-content-container flex flex-col w-full max-w-lg py-5">
-                    <h1 class="text-[#1C160C] tracking-light text-[32px] font-bold leading-tight px-4 text-left pb-3 pt-6">Confirmation</h1>
-                    <div class="flex flex-wrap max-w-lg items-end gap-4 px-4 py-3">
-                        <h1 class="text-[#1C160C] tracking-light text-[16px] font-light leading-tight px-4 text-left pb-3 pt-6">Are you sure you want to delete the expense?</h1>
-                    </div>
+                    <div class="layout-content-container flex flex-col w-full max-w-lg py-5">
+                        <h1 class="text-[#1C160C] tracking-light text-[32px] font-bold leading-tight px-4 text-left pb-3 pt-6">Confirmation</h1>
+                        <div class="flex flex-wrap max-w-lg items-end gap-4 px-4 py-3">
+                            <h1 class="text-[#1C160C] tracking-light text-[16px] font-light leading-tight px-4 text-left pb-3 pt-6">Are you sure you want to delete the expense?</h1>
+                        </div>
 
-                    <div class="flex px-4 py-3 justify-between">
-                        <button
-                            class="flex min-w-[84px] max-w-lg cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-5 flex-1 bg-[#E0E0E0] text-[#FFFFFF] text-base font-bold leading-normal tracking-[0.015em] CancelBtn me-2"
-                        >
-                            <span class="truncate">Cancel</span>
-                        </button>
-                        <button
-                            class="flex min-w-[84px] max-w-lg cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-5 flex-1 bg-[#D9534F] text-[#FFFFFF] text-base font-bold leading-normal tracking-[0.015em] DeleteBtn ms-2"
-                        >
-                            <span class="truncate">Delete</span>
-                        </button>
+                        <div class="flex px-4 py-3 justify-between">
+                            <button
+                                class="flex min-w-[84px] max-w-lg cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-5 flex-1 bg-[#E0E0E0] text-[#FFFFFF] text-base font-bold leading-normal tracking-[0.015em] cancelDelete me-2"
+                            >
+                                <span class="truncate">Cancel</span>
+                            </button>
+                            <button
+                                class="flex min-w-[84px] max-w-lg cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 px-5 flex-1 bg-[#D9534F] text-[#FFFFFF] text-base font-bold leading-normal tracking-[0.015em] confirmDelete ms-2"
+                            >
+                                <span class="truncate">Delete</span>
+                            </button>
+                        </div>
                     </div>
-                </div>
                 </div>
             </div>
         </div>
-  </div>
+    </div>
 </div>
+
+<div id="deleteOverlay" class="overlay"></div>
