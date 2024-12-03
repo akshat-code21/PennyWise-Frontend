@@ -1,38 +1,45 @@
+
 <html>
-  <head>
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
-    <link rel="stylesheet" href="/style/dashboardStyle.css">
-    <link
-      rel="stylesheet"
-      as="style"
-      onload="this.rel='stylesheet'"
-      href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Plus+Jakarta+Sans%3Awght%40400%3B500%3B700%3B800"
-    />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <!-- <link rel="icon" type="image/x-icon" href="/assets/logo bg.png"> -->
-    <link rel="icon" type="image/x-icon" href="/assets/logo_bg.png" />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  </head>
-  <body>
-    <div class="relative flex size-full min-h-screen flex-col bg-[#FFFFFF] group/design-root overflow-x-hidden" style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'>
-      <div class="layout-container flex h-full grow flex-col">
-        
-        <header class="flex cursor-pointer items-center justify-between whitespace-nowrap border-b border-solid border-b-[#F4EFE6] px-10 py-3 bg bg-[#E4EAE1]" id = "heading">
-        <a href="/dashboard">
-            <div class="flex items-center gap-4 text-[#1C160C]">
-                <img src="assets/logo.png" alt="logo" class="w-[75px]">
-                <h2 class="text-[#1C160C] text-lg font-bold leading-tight tracking-[-0.015em] flex items-center"><span class= "text-[#40916C] text-2xl pe-1">PennyWise</span>| Dashboard</h2>
-            </div>
+<head>
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="" />
+  <link rel="stylesheet" href="/style/dashboardStyle.css">
+  <link
+    rel="stylesheet"
+    as="style"
+    onload="this.rel='stylesheet'"
+    href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Plus+Jakarta+Sans%3Awght%40400%3B500%3B700%3B800"
+  />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="icon" type="image/x-icon" href="/assets/logo_bg.png" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css" rel="stylesheet">
+
+</head>
+<body>
+  <div class="relative flex min-h-screen flex-col bg-[#FFFFFF] group/design-root overflow-x-hidden" 
+       style='font-family: "Plus Jakarta Sans", "Noto Sans", sans-serif;'>
+    <div class="layout-container flex h-full grow flex-col">
+      
+      <!-- Header Section -->
+      <header 
+        class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#F4EFE6] px-5 py-3 bg-[#E4EAE1]"
+        id="heading">
+        <a href="/dashboard" class="flex items-center gap-4 text-[#1C160C]">
+          <img src="assets/logo.png" alt="logo" class="w-12 md:w-[75px]">
+          <h2 class="text-[#1C160C] text-base md:text-lg font-bold leading-tight tracking-[-0.015em] flex items-center">
+            <span class="text-[#40916C] text-lg md:text-2xl pe-1">PennyWise</span> | Dashboard
+          </h2>
         </a>
-          <button
-            class="logoutBtn flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-[#019863] text-[#FFFFFF] text-sm font-bold leading-normal tracking-[0.015em]"
-          >
-            <span class="truncate">Log out</span>
-          </button>
-        </header>
-        <div class="modal" id = "popup">
+        <button
+          class="logoutBtn flex min-w-[84px] max-w-[480px] items-center justify-center overflow-hidden rounded-full h-10 px-3 md:px-4 bg-[#019863] text-[#FFFFFF] text-sm md:text-base font-bold leading-normal tracking-[0.015em]"
+        >
+          <span class="truncate">Log out</span>
+        </button>
+      </header>
+
+      <div class="modal" id = "popup">
           <div class="modal-content">
 
             <div
@@ -88,5 +95,3 @@
         </div>
         <div id="overlay"></div>
         <script src="scripts/header.js"></script>
-
-          
