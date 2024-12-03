@@ -43,6 +43,12 @@ app.get("/404", (req, res) => {
 app.get("/privacyPolicy",(req,res)=>{
     res.render("privacyPolicy");
 })
+app.get('/insights', (req, res) => {
+    res.render('insights');
+});
+app.get('/savingtips', (req, res) => {
+    res.render('savingtips');
+});
 // Start the server
 app.listen(8080, () => {
     console.log("Server is listening on port 8080");
