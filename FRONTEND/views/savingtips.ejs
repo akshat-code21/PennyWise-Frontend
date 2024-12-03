@@ -1,0 +1,77 @@
+<%- include('partials/header') %>
+
+<div class="px-40 flex flex-1 justify-center py-5">
+    <%- include('partials/buttons') %>
+    <script>
+        // Highlight the Saving Tips button
+        const savingTipsBtn = document.querySelector('button span').parentElement;
+        const allButtons = document.querySelectorAll('button');
+        allButtons.forEach(button => {
+            const span = button.querySelector('span');
+            if (span && span.textContent.trim() === 'Saving Tips') {
+                button.style.backgroundColor = '#019863';
+                button.style.color = 'white';
+            }
+        });
+    </script>
+
+    <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-[#40916c] mb-2">AI-Powered Saving Tips</h1>
+            <p class="text-gray-600">Get personalized financial insights and recommendations based on your spending patterns.</p>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loadingState" class="flex justify-center items-center py-10 hidden">
+            <!-- Loading animation will be inserted here -->
+        </div>
+
+        <!-- Error State -->
+        <div id="errorState" class="hidden">
+            <div class="bg-red-50 border-l-4 border-red-400 p-4 rounded-lg">
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm text-red-700">
+                            <span class="font-medium">Error loading saving tips.</span>
+                            <br>
+                            Please check your connection and try again. If the problem persists, try logging out and back in.
+                        </p>
+                        <button onclick="window.location.reload()" class="mt-2 text-sm font-medium text-red-600 hover:text-red-500">
+                            Retry
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- No Expenses State -->
+        <div id="noExpensesState" class="hidden">
+            <div class="bg-gray-50 border-l-4 border-[#40916c] p-4 rounded-lg">
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <svg class="h-5 w-5 text-[#40916c]" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm text-gray-600">Add some expenses to get personalized saving tips!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Insights Container -->
+        <div id="aiInsights" class="space-y-6">
+            <!-- AI insights will be inserted here -->
+        </div>
+    </div>
+</div>
+
+<%- include('partials/footer') %>
+<script src="/scripts/savingTipsScript.js"></script>
+<%- include('partials/end') %> 
