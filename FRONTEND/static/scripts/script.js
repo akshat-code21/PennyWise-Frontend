@@ -1,5 +1,3 @@
-import { validateExpense } from '../scripts/utils/validation.js';
-
 const popup = document.getElementById("popup");
 const overlay = document.getElementById("overlay");
 // Get the button that opens the modal
@@ -18,64 +16,17 @@ btn.onclick = function() {
   btn.style.backgroundColor = '#019863';
   btn.style.color = '#ffffff';
 }
-
-// Add error message elements
-const createErrorElement = (fieldContainer) => {
-    const errorDiv = document.createElement('div');
-    errorDiv.className = 'error-message';
-    errorDiv.style.color = '#ff4444';
-    errorDiv.style.fontSize = '12px';
-    errorDiv.style.marginTop = '4px';
-    fieldContainer.appendChild(errorDiv);
-    return errorDiv;
-};
-
-const expenseNameError = createErrorElement(document.querySelector('.expenseNameInput').parentElement);
-const categoryError = createErrorElement(document.querySelector('.categorySelect').parentElement);
-const amountError = createErrorElement(document.querySelector('.amountInput').parentElement);
-
-const clearErrors = () => {
-    expenseNameError.textContent = '';
-    categoryError.textContent = '';
-    amountError.textContent = '';
-};
-
-let submitAddExpenseBtn = document.querySelector('.submitAddExpenseBtn');
-submitAddExpenseBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    clearErrors();
-
-    let expenseNameInput = document.querySelector('.expenseNameInput');
-    let categoryDropdown = document.querySelector('.categorySelect');
-    let amountInput = document.querySelector('.amountInput');
-
-    const expenseData = {
-        description: expenseNameInput.value,
-        category: categoryDropdown.value,
-        amount: Number(amountInput.value)
-    };
-
-    const validationResult = validateExpense(expenseData);
-
-    if (!validationResult.success) {
-        validationResult.errors.forEach(error => {
-            switch (error.field) {
-                case 'description':
-                    expenseNameError.textContent = error.message;
-                    break;
-                case 'category':
-                    categoryError.textContent = error.message;
-                    break;
-                case 'amount':
-                    amountError.textContent = error.message;
-                    break;
-            }
-        });
-        return;
-    }
-
-    addExpense(expenseData.description, expenseData.category, expenseData.amount);
-});
+let submitAddExpenseBtn = document.querySelector('.submitAddExpenseBtn')
+submitAddExpenseBtn.addEventListener('click',(e)=>{
+  e.preventDefault();
+  let expenseNameInput = document.querySelector('.expenseNameInput')
+  let expenseName = expenseNameInput.value;
+  let categoryDropdown = document.querySelector('.categorySelect')
+  let category = categoryDropdown.value;
+  let amountInput = document.querySelector('.amountInput')
+  let amount = amountInput.value;
+  addExpense(expenseName,category,amount)
+})
 const addExpense = async(expenseName,category,amount)=>{ 
   try {
     let response = await fetch('http://localhost:3000/api/v1/expenses/',{
