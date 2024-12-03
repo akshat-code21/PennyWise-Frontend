@@ -20,46 +20,118 @@ let submitAddExpenseBtn = document.querySelector('.submitAddExpenseBtn')
 submitAddExpenseBtn.addEventListener('click',(e)=>{
   e.preventDefault();
   let expenseNameInput = document.querySelector('.expenseNameInput')
-  let expenseName = expenseNameInput.value;
   let categoryDropdown = document.querySelector('.categorySelect')
-  let category = categoryDropdown.value;
   let amountInput = document.querySelector('.amountInput')
-  let amount = amountInput.value;
-  addExpense(expenseName,category,amount)
-})
-const addExpense = async(expenseName,category,amount)=>{ 
-  try {
-    let response = await fetch('http://localhost:3000/api/v1/expenses/',{
-      method : "POST",
-      headers : {
-        'Content-Type': 'application/json',
-        'token' : localStorage.getItem('token')
-      },
-      body:JSON.stringify({description : expenseName,amount : Number(amount),category})
-    });
-    let data = await response.json();
-    if (data.message === "expense added") {
-      // Close modal after successful addition
-      popup.style.display = "none";
-      overlay.style.display = "none";
-      
-      // Clear the form
-      document.querySelector('.expenseNameInput').value = '';
-      document.querySelector('.categorySelect').value = '';
-      document.querySelector('.amountInput').value = '';
-      
-      // Check which page we're on and refresh accordingly
-      if (window.initializeDashboard) {
-        await window.initializeDashboard();
-      } else if (window.initializeDetailPage) {
-        await window.initializeDetailPage();
-      }
-    }
-    alert(data.message);
-  } catch (error) {
-    console.error('Error adding expense:', error);
-    alert('Failed to add expense');
+  
+  let expenseName = expenseNameInput.value.trim();
+  let category = categoryDropdown.value;
+  let amount = amountInput.value.trim();
+
+  // Validate inputs
+  if (!expenseName) {
+    alert('Please enter an expense name');
+    expenseNameInput.focus();
+    return;
   }
+
+  // Validate expense name format
+  if (!isNaN(expenseName) || /^\d+$/.test(expenseName)) {
+    alert('Expense name cannot be a number');
+    expenseNameInput.focus();
+    return;
+  }
+
+  if (expenseName.length > 100) {
+    alert('Expense name is too long (max 100 characters)');
+    expenseNameInput.focus();
+    return;
+  }
+
+  if (!/^[a-zA-Z0-9\s\-_.,!?@#$%^&*()]+$/.test(expenseName)) {
+    alert('Expense name contains invalid characters');
+    expenseNameInput.focus();
+    return;
+  }
+
+  if (!category) {
+    alert('Please select a category');
+    categoryDropdown.focus();
+    return;
+  }
+
+  if (!amount) {
+    alert('Please enter an amount');
+    amountInput.focus();
+    return;
+  }
+
+  // Validate amount
+  const numAmount = Number(amount);
+  if (isNaN(numAmount) || numAmount <= 0) {
+    alert('Please enter a valid positive amount');
+    amountInput.focus();
+    return;
+  }
+
+  if (numAmount > 1000000) {
+    alert('Amount cannot exceed 1,000,000');
+    amountInput.focus();
+    return;
+  }
+
+  addExpense(expenseName, category, numAmount);
+})
+const addExpense = async(expenseName, category, amount) => { 
+    try {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            throw new Error('Authentication token not found');
+        }
+
+        const response = await fetch('http://localhost:3000/api/v1/expenses/', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+                'token': token
+            },
+            body: JSON.stringify({
+                description: expenseName,
+                amount: Number(amount),
+                category
+            })
+        });
+
+        const data = await response.json();
+        
+        if (!response.ok) {
+            throw new Error(data.message || 'Failed to add expense');
+        }
+
+        // Close modal after successful addition
+        popup.style.display = "none";
+        overlay.style.display = "none";
+        
+        // Clear the form
+        document.querySelector('.expenseNameInput').value = '';
+        document.querySelector('.categorySelect').value = '';
+        document.querySelector('.amountInput').value = '';
+        
+        // Reset button style
+        btn.style.backgroundColor = '';
+        btn.style.color = 'black';
+        
+        // Refresh the data
+        if (window.initializeDashboard) {
+            await window.initializeDashboard();
+        } else if (window.initializeDetailPage) {
+            await window.initializeDetailPage();
+        }
+
+        alert('Expense added successfully');
+    } catch (error) {
+        console.error('Error adding expense:', error);
+        alert(error.message || 'Failed to add expense');
+    }
 }
 // When the user clicks on <span> (x), close the modal and hide overlay
 closeBtn.onclick = function() {

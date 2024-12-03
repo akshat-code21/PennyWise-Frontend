@@ -29,7 +29,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const confirmDeleteBtn = document.querySelector('.confirmDelete');
     if (confirmDeleteBtn) {
         confirmDeleteBtn.addEventListener('click', async function() {
-            if (!currentExpenseId) return;
+            if (!currentExpenseId) {
+                alert('No expense selected for deletion');
+                return;
+            }
 
             try {
                 const response = await fetch(`http://localhost:3000/api/v1/expenses/${currentExpenseId}`, {
@@ -40,22 +43,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
 
                 const data = await response.json();
-                if (data.message === "expense deleted") {
-                    // Close modal
-                    deleteModal.style.display = "none";
-                    deleteOverlay.style.display = "none";
-                    
-                    // Refresh the table
-                    if (window.initializeDashboard) {
-                        await window.initializeDashboard();
-                    } else if (window.initializeDetailPage) {
-                        await window.initializeDetailPage();
-                    }
+                
+                if (!response.ok) {
+                    throw new Error(data.message || 'Failed to delete expense');
                 }
-                alert(data.message);
+
+                // Close modal
+                deleteModal.style.display = "none";
+                deleteOverlay.style.display = "none";
+                
+                // Refresh the table
+                if (window.initializeDashboard) {
+                    await window.initializeDashboard();
+                } else if (window.initializeDetailPage) {
+                    await window.initializeDetailPage();
+                }
+
+                alert('Expense deleted successfully');
+
             } catch (error) {
                 console.error('Error deleting expense:', error);
-                alert('Failed to delete expense');
+                alert(error.message || 'Failed to delete expense');
             }
         });
     }
