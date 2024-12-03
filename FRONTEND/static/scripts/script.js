@@ -1,3 +1,4 @@
+
 const popup = document.getElementById("popup");
 const overlay = document.getElementById("overlay");
 // Get the button that opens the modal
@@ -29,38 +30,38 @@ submitAddExpenseBtn.addEventListener('click',(e)=>{
 
   // Validate inputs
   if (!expenseName) {
-    alert('Please enter an expense name');
+    toastr.warning('Please enter an expense name');
     expenseNameInput.focus();
     return;
   }
 
   // Validate expense name format
   if (!isNaN(expenseName) || /^\d+$/.test(expenseName)) {
-    alert('Expense name cannot be a number');
+    toastr.warning('Expense name cannot be a number');
     expenseNameInput.focus();
     return;
   }
 
   if (expenseName.length > 100) {
-    alert('Expense name is too long (max 100 characters)');
+    toastr.error('Expense name is too long (max 100 characters)');
     expenseNameInput.focus();
     return;
   }
 
   if (!/^[a-zA-Z0-9\s\-_.,!?@#$%^&*()]+$/.test(expenseName)) {
-    alert('Expense name contains invalid characters');
+    toastr.warning('Expense name contains invalid characters');
     expenseNameInput.focus();
     return;
   }
 
   if (!category) {
-    alert('Please select a category');
+    toastr.warning('Please select a category');
     categoryDropdown.focus();
     return;
   }
 
   if (!amount) {
-    alert('Please enter an amount');
+    toastr.warning('Please enter an amount');
     amountInput.focus();
     return;
   }
@@ -68,13 +69,13 @@ submitAddExpenseBtn.addEventListener('click',(e)=>{
   // Validate amount
   const numAmount = Number(amount);
   if (isNaN(numAmount) || numAmount <= 0) {
-    alert('Please enter a valid positive amount');
+    toastr.warning('Please enter a valid positive amount');
     amountInput.focus();
     return;
   }
 
   if (numAmount > 1000000) {
-    alert('Amount cannot exceed 1,000,000');
+    toastr.warning('Amount cannot exceed 1,000,000');
     amountInput.focus();
     return;
   }
@@ -126,11 +127,10 @@ const addExpense = async(expenseName, category, amount) => {
         } else if (window.initializeDetailPage) {
             await window.initializeDetailPage();
         }
-
-        alert('Expense added successfully');
+      toastr.success('Expense added successfully');
     } catch (error) {
         console.error('Error adding expense:', error);
-        alert(error.message || 'Failed to add expense');
+        toastr.error(error.message || 'Failed to add expense');
     }
 }
 // When the user clicks on <span> (x), close the modal and hide overlay

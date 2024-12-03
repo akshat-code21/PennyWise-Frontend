@@ -48,13 +48,13 @@ document.querySelector('#mod button').addEventListener('click', async function(e
 
         // Validate inputs (similar to add expense validation)
         if (!description || !category || !amount) {
-            alert('Please fill in all fields');
+            toastr.warning('Please fill in all fields');
             return;
         }
 
         const numAmount = Number(amount);
         if (isNaN(numAmount) || numAmount <= 0) {
-            alert('Please enter a valid positive amount');
+            toastr.warning('Please enter a valid positive amount');
             return;
         }
 
@@ -83,10 +83,10 @@ document.querySelector('#mod button').addEventListener('click', async function(e
         
         // Refresh the table
         await initializeDetailPage();
-        alert('Expense modified successfully');
+        toastr.success('Expense modified successfully');
 
     } catch (error) {
         console.error('Error modifying expense:', error);
-        alert(error.message || 'Failed to modify expense');
+        toastr.error(error.message || 'Failed to modify expense');
     }
 });

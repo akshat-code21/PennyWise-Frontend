@@ -10,7 +10,7 @@ btn.addEventListener("click", (e) => {
 const handleLogin = async (email, password) => {
   try {
     if (!email || !password) {
-      alert('Please enter both email and password');
+      toastr.error('Please enter both email and password');
       return;
     }
 
@@ -35,10 +35,14 @@ const handleLogin = async (email, password) => {
     // Store token in both localStorage and cookies
     localStorage.setItem("token", data.token);
     document.cookie = `token=${data.token}; path=/`;
-    
-    window.location.href = "/dashboard";
+    toastr.success("LoggedIn Successfully!");
+    setTimeout(() => {
+      window.location.href = "/dashboard";
+    }, 1000);
+
+
   } catch (error) {
     console.error('Login error:', error);
-    alert(error.message || 'Failed to login. Please try again.');
+    toastr.error(error.message || 'Failed to login. Please try again.');
   }
 };

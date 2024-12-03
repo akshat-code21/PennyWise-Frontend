@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (confirmDeleteBtn) {
         confirmDeleteBtn.addEventListener('click', async function() {
             if (!currentExpenseId) {
-                alert('No expense selected for deletion');
+                toastr.warning('No expense selected for deletion');
                 return;
             }
 
@@ -59,11 +59,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     await window.initializeDetailPage();
                 }
 
-                alert('Expense deleted successfully');
+                toastr.success('Expense deleted successfully');
 
             } catch (error) {
                 console.error('Error deleting expense:', error);
-                alert(error.message || 'Failed to delete expense');
+                toastr.error(error.message || 'Failed to delete expense');
             }
         });
     }
