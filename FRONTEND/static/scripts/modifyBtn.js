@@ -40,12 +40,24 @@ closeBtnM.onclick = function() {
 // Add event listener for the modify form submission
 document.querySelector('#mod button').addEventListener('click', async function(e) {
     e.preventDefault();
-    const expenseId = this.dataset.expenseId;
-    const description = document.querySelector('#mod input[placeholder="Enter expense name"]').value;
-    const category = document.querySelector('#mod select').value;
-    const amount = document.querySelector('#mod input[placeholder="Enter amount"]').value;
-
     try {
+        const expenseId = this.dataset.expenseId;
+        const description = document.querySelector('#mod input[placeholder="Enter expense name"]').value.trim();
+        const category = document.querySelector('#mod select').value;
+        const amount = document.querySelector('#mod input[placeholder="Enter amount"]').value.trim();
+
+        // Validate inputs (similar to add expense validation)
+        if (!description || !category || !amount) {
+            alert('Please fill in all fields');
+            return;
+        }
+
+        const numAmount = Number(amount);
+        if (isNaN(numAmount) || numAmount <= 0) {
+            alert('Please enter a valid positive amount');
+            return;
+        }
+
         const response = await fetch(`http://localhost:3000/api/v1/expenses/${expenseId}`, {
             method: 'PUT',
             headers: {
@@ -55,22 +67,26 @@ document.querySelector('#mod button').addEventListener('click', async function(e
             body: JSON.stringify({
                 description,
                 category,
-                amount: Number(amount)
+                amount: numAmount
             })
         });
 
         const data = await response.json();
-        if (data.message === "expense changed") {
-            // Close modal
-            mod.style.display = "none";
-            overlay.style.display = "none";
-            
-            // Refresh the table
-            await initializeDetailPage();
+        
+        if (!response.ok) {
+            throw new Error(data.message || 'Failed to modify expense');
         }
-        alert(data.message);
+
+        // Close modal
+        mod.style.display = "none";
+        overlay.style.display = "none";
+        
+        // Refresh the table
+        await initializeDetailPage();
+        alert('Expense modified successfully');
+
     } catch (error) {
         console.error('Error modifying expense:', error);
-        alert('Failed to modify expense');
+        alert(error.message || 'Failed to modify expense');
     }
 });
