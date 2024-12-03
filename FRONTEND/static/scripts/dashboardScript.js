@@ -23,7 +23,7 @@ async function fetchExpenses() {
     return data.expenses;
   } catch (error) {
     console.error("Error fetching expenses:", error);
-    alert(error.message || 'Failed to fetch expenses');
+    toastr.error(error.message || 'Failed to fetch expenses');
     return [];
   }
 }
@@ -150,4 +150,24 @@ function updatePieChart(expenses) {
     },
   });
 }
+
+toastr.options = {
+  "closeButton": true,
+  "debug": false,
+  "newestOnTop": false,
+  "progressBar": true,
+  "positionClass": "toast-top-right",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+}
+
+
 document.addEventListener("DOMContentLoaded", initializeDashboard);
