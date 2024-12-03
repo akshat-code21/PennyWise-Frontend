@@ -2,21 +2,28 @@ let pieChart = null;
 
 async function fetchExpenses() {
   try {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      throw new Error('Authentication token not found');
+    }
+
     const response = await fetch("http://localhost:3000/api/v1/expenses/", {
       method: "GET",
       headers: {
-        token: `${localStorage.getItem("token")}`,
+        token: token
       },
     });
 
     if (!response.ok) {
-      throw new Error("Failed to fetch expenses");
+      const data = await response.json();
+      throw new Error(data.message || 'Failed to fetch expenses');
     }
 
     const data = await response.json();
     return data.expenses;
   } catch (error) {
     console.error("Error fetching expenses:", error);
+    alert(error.message || 'Failed to fetch expenses');
     return [];
   }
 }
