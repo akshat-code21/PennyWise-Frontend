@@ -16,6 +16,10 @@ const handleLogin = async (email, password) => {
     body: JSON.stringify({ email, password }),
   });
   const data = await response.json();
+  
+  // Store token in both localStorage and cookies
   localStorage.setItem("token", data.token);
+  document.cookie = `token=${data.token}; path=/`;
+  
   window.location.href = "/dashboard";
 };
