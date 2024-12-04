@@ -462,14 +462,16 @@ footer .contact-us-links img {
     }
 
 }
-@media (max-width: 600px){
-    .main-page-img {
-        flex-direction: column;
-    }
-}
 @media (max-width: 576px) {
     .main-page-heading h1 {
         font-size: 36px;
+    }
+    .main-page-img {
+        flex-direction: column;
+    }
+    .main-page-img img{
+        width: 200px;
+        padding-bottom: 30px;
     }
 
     .main-page-desc h2 {
@@ -489,7 +491,7 @@ footer .contact-us-links img {
         padding: 0px 20px;
     }
     .sec-4 .container .right img {
-        width: 30px;
+        display: none;
     }
     .Log button {
         font-size: 12px;
