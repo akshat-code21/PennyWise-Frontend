@@ -105,7 +105,7 @@ function createMonthlyChart(data) {
         data: {
             labels: Object.keys(data.monthlySpending),
             datasets: [{
-                label: 'Monthly Spending',
+                label: 'Spending Trends',
                 data: Object.values(data.monthlySpending),
                 borderColor: '#40916c',
                 backgroundColor: 'rgba(64, 145, 108, 0.1)',
@@ -118,7 +118,7 @@ function createMonthlyChart(data) {
             plugins: {
                 title: {
                     display: true,
-                    text: 'Monthly Spending Trend',
+                    text: 'Spending Trends',
                     color: '#40916c',
                     font: {
                         size: 16,
@@ -164,7 +164,7 @@ async function initializeInsightsPage() {
     try {
         const insights = await fetchInsights();
         if (insights) {
-            document.getElementById('totalSpending').textContent = `₹${insights.totalSpending}`;
+            document.getElementById('totalSpending').textContent = `₹${insights.monthlyTotalSpending}`;
             
             if (insights.highestExpense) {
                 document.getElementById('highestExpense').textContent = 

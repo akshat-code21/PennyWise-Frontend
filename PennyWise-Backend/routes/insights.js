@@ -167,8 +167,16 @@ insightsRouter.get('/statistics', userMiddleWare, async (req, res) => {
             });
         }
 
-        // Calculate total spending
-        const totalSpending = expenses.reduce((sum, expense) => sum + expense.amount, 0);
+        // Get current month's expenses
+        const currentDate = new Date();
+        const currentMonthExpenses = expenses.filter(expense => {
+            const expenseDate = new Date(expense.createdAt);
+            return expenseDate.getMonth() === currentDate.getMonth() &&
+                   expenseDate.getFullYear() === currentDate.getFullYear();
+        });
+
+        // Calculate current month's total spending
+        const monthlyTotalSpending = currentMonthExpenses.reduce((sum, expense) => sum + expense.amount, 0);
 
         // Calculate category-wise spending
         const categorySpending = expenses.reduce((acc, expense) => {
@@ -189,7 +197,7 @@ insightsRouter.get('/statistics', userMiddleWare, async (req, res) => {
         const lowestExpense = sortedExpenses[sortedExpenses.length - 1];
 
         res.json({
-            totalSpending,
+            monthlyTotalSpending,
             categorySpending,
             monthlySpending,
             highestExpense,
