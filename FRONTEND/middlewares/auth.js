@@ -1,6 +1,6 @@
 const authMiddleware = (req, res, next) => {
     // Check if we're on a protected route
-    const protectedRoutes = ['/dashboard', '/detailExpense'];
+    const protectedRoutes = ['/dashboard', '/detailExpense', '/insights', '/savingtips'];
     
     if (protectedRoutes.includes(req.path)) {
         // Get token from cookies or query params
