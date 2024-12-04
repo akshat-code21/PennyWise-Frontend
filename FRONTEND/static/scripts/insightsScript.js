@@ -8,7 +8,7 @@ async function fetchInsights() {
             return null;
         }
         
-        const response = await fetch('https://pennywise-backend-lyz4.onrender.com/api/v1/insights/statistics', {
+        const response = await fetch('https://pennywise-backend-q3e3.onrender.com/api/v1/insights/statistics', {
             headers: {
                 'token': token
             }
@@ -33,7 +33,7 @@ async function fetchAIInsights() {
             return null;
         }
 
-        const response = await fetch('https://pennywise-backend-lyz4.onrender.com/api/v1/insights/ai-analysis', {
+        const response = await fetch('https://pennywise-backend-q3e3.onrender.com/api/v1/insights/ai-analysis', {
             headers: {
                 'token': token
             }

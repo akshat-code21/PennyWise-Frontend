@@ -89,7 +89,7 @@ const addExpense = async(expenseName, category, amount) => {
             throw new Error('Authentication token not found');
         }
         
-        const response = await fetch('https://pennywise-backend-lyz4.onrender.com/api/v1/expenses/', {
+        const response = await fetch('https://pennywise-backend-q3e3.onrender.com/api/v1/expenses/', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',

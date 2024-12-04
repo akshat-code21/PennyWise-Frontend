@@ -58,7 +58,7 @@ document.querySelector('#mod button').addEventListener('click', async function(e
             return;
         }
         
-        const response = await fetch(`https://pennywise-backend-lyz4.onrender.com/api/v1/expenses/${expenseId}`, {
+        const response = await fetch(`https://pennywise-backend-q3e3.onrender.com/api/v1/expenses/${expenseId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

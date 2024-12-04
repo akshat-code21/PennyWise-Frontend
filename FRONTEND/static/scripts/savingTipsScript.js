@@ -11,7 +11,7 @@ async function fetchAIInsights() {
         document.getElementById('noExpensesState').classList.add('hidden');
         document.getElementById('aiInsights').innerHTML = '';
         
-        const response = await fetch('https://pennywise-backend-lyz4.onrender.com/api/v1/insights/ai-analysis', {
+        const response = await fetch('https://pennywise-backend-q3e3.onrender.com/api/v1/insights/ai-analysis', {
             headers: {
                 'token': token
             }

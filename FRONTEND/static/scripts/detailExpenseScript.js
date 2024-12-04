@@ -1,6 +1,6 @@
 async function fetchExpenses() {
   try {
-    const response = await fetch("https://pennywise-backend-lyz4.onrender.com/api/v1/expenses/", {
+    const response = await fetch("https://pennywise-backend-q3e3.onrender.com/api/v1/expenses/", {
       method: "GET",
       headers: {
         token: `${localStorage.getItem("token")}`,

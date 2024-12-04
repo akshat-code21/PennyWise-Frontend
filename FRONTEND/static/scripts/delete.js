@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             try {
-                const response = await fetch(`https://pennywise-backend-lyz4.onrender.com/api/v1/expenses/${currentExpenseId}`, {
+                const response = await fetch(`https://pennywise-backend-q3e3.onrender.com/api/v1/expenses/${currentExpenseId}`, {
                     method: 'DELETE',
                     headers: {
                         'token': localStorage.getItem('token')

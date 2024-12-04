@@ -43,7 +43,7 @@ const handle = async (name, email, password) => {
             return;
         }
         
-        const response = await fetch("https://pennywise-backend-lyz4.onrender.com/api/v1/auth/signup", {
+        const response = await fetch("https://pennywise-backend-q3e3.onrender.com/api/v1/auth/signup", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
