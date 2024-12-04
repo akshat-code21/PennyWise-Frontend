@@ -17,12 +17,11 @@
 
     <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
         <div class="mb-8">
-            <!-- <h1 class="text-3xl font-bold text-[#40916c] mb-2">AI-Powered Saving Tips</h1> -->
-            <p class="text-gray-600">Get personalized financial insights and recommendations based on your spending patterns.</p>
+            <p class="text-gray-600 text-lg">Get personalized financial insights and recommendations based on your spending patterns.</p>
         </div>
 
         <!-- Loading State -->
-        <div id="loadingState" class="flex justify-center items-center py-10 hidden">
+        <div id="loadingState" class="hidden">
             <!-- Loading animation will be inserted here -->
         </div>
 
@@ -39,7 +38,7 @@
                         <p class="text-sm text-red-700">
                             <span class="font-medium">Error loading saving tips.</span>
                             <br>
-                            Please check your connection and try again. If the problem persists, try logging out and back in.
+                            Please check your connection and try again.
                         </p>
                         <button onclick="window.location.reload()" class="mt-2 text-sm font-medium text-red-600 hover:text-red-500">
                             Retry

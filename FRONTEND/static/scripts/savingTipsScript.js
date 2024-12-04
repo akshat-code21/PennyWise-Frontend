@@ -87,51 +87,45 @@ function getIconForSection(title) {
 }
 
 function formatInsights(insights) {
-    // Split insights into sections based on numbers (1., 2., etc.)
-    const sections = insights.split(/(?=\d+\.)/).filter(section => section.trim());
+    // Split insights into sections based on numbered headings (1., 2., etc.)
+    const sections = insights.split(/(?=\d+\.\s+[A-Za-z\s]+:)/).filter(section => section.trim());
     
     return sections.map(section => {
-        const [title, ...content] = section.split('\n');
+        // Extract title and content
+        const titleMatch = section.match(/^\d+\.\s+([^:]+):/);
+        if (!titleMatch) return '';
         
-        // Clean up title by removing asterisks
-        const cleanTitle = title.replace(/\*+/g, '').trim();
+        const title = titleMatch[1].trim();
+        const content = section.slice(titleMatch[0].length).trim();
         
-        // Process content to properly format bullet points and clean up asterisks
-        const formattedContent = content
-            .join('\n')
-            // Replace asterisks with styled spans
-            .replace(/\*\*(.*?)\*\*/g, '<span class="font-semibold text-[#2d6a4f]">$1</span>')
-            // Split content by bullet points and process each
-            .split('-')
-            .map(item => {
-                if (!item.trim()) return '';
+        // Process bullet points
+        const bulletPoints = content.split('\n')
+            .map(line => line.trim())
+            .filter(line => line.startsWith('-'))
+            .map(point => {
+                // Remove the leading dash and clean up the text
+                let cleanPoint = point.slice(1).trim();
                 
-                // Process each bullet point
-                let processedItem = item
-                    .trim()
-                    // Format currency
-                    .replace(/₹(\d+)/g, '₹$1')
-                    // Clean up any remaining asterisks
-                    .replace(/\*+/g, '')
-                    .trim();
-
-                return `<li class="mb-3 leading-relaxed">${processedItem}</li>`;
+                // Format currency
+                cleanPoint = cleanPoint.replace(/₹(\d+)/g, '<span class="text-[#2d6a4f] font-semibold">₹$1</span>');
+                
+                // Bold important terms
+                cleanPoint = cleanPoint.replace(/\*\*(.*?)\*\*/g, '<span class="font-semibold text-[#2d6a4f]">$1</span>');
+                
+                return `<li class="mb-4 last:mb-0 pl-6 relative before:content-['•'] before:absolute before:left-0 before:text-[#40916c] before:top-0">${cleanPoint}</li>`;
             })
-            .filter(item => item) // Remove empty items
-            .join('\n'); // Join with newlines for better readability
+            .join('');
 
-        // Create a card with improved styling
+        // Create the card with improved styling
         return `
-            <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <div class="flex items-center mb-6">
-                    ${getIconForSection(cleanTitle)}
-                    <h3 class="text-xl font-bold text-[#40916c] ml-3">${cleanTitle}</h3>
+            <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 mb-6 last:mb-0">
+                <div class="flex items-center gap-3 mb-4">
+                    ${getIconForSection(title)}
+                    <h3 class="text-xl font-bold text-[#40916c]">${title}</h3>
                 </div>
-                <div class="prose prose-slate max-w-none">
-                    <ul class="list-none space-y-2 text-gray-700">
-                        ${formattedContent}
-                    </ul>
-                </div>
+                <ul class="space-y-2 text-gray-700 list-none">
+                    ${bulletPoints}
+                </ul>
             </div>
         `;
     }).join('');
@@ -184,13 +178,14 @@ document.head.appendChild(style);
 
 // Update the loading state styling
 function showLoadingState() {
-    document.getElementById('loadingState').innerHTML = `
-        <div class="flex flex-col items-center justify-center py-10">
-            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-[#40916c]"></div>
-            <p class="mt-4 text-[#40916c] font-medium">Analyzing your expenses...</p>
+    const loadingState = document.getElementById('loadingState');
+    loadingState.innerHTML = `
+        <div class="flex flex-col items-center justify-center py-12">
+            <div class="animate-spin rounded-full h-12 w-12 border-4 border-[#40916c] border-t-transparent"></div>
+            <p class="mt-4 text-[#40916c] font-medium">Analyzing your financial data...</p>
         </div>
     `;
-    document.getElementById('loadingState').classList.remove('hidden');
+    loadingState.classList.remove('hidden');
 }
 
 async function initializeSavingTipsPage() {
@@ -242,7 +237,7 @@ document.addEventListener('DOMContentLoaded', initializeSavingTipsPage);
 const errorStateStyle = `
     .error-state {
         background-color: #fee2e2;
-        border: 1px solid #ef4444;
+        border-left: 4px solid #ef4444;
         border-radius: 0.5rem;
         padding: 1rem;
         margin: 1rem 0;
@@ -253,3 +248,36 @@ const errorStateStyle = `
     }
 `;
 document.head.appendChild(document.createElement('style')).textContent = errorStateStyle; 
+
+// Add styles for better formatting
+const additionalStyles = `
+    .ai-insights-container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .bullet-point {
+        position: relative;
+        padding-left: 1.5rem;
+    }
+
+    .bullet-point::before {
+        content: "•";
+        position: absolute;
+        left: 0.5rem;
+        color: #40916c;
+    }
+
+    .insight-card {
+        transition: all 0.3s ease;
+    }
+
+    .insight-card:hover {
+        transform: translateY(-2px);
+    }
+`;
+
+// Add the styles to the document
+const styleElement = document.createElement('style');
+styleElement.textContent = additionalStyles;
+document.head.appendChild(styleElement); 
