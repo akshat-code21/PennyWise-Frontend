@@ -42,8 +42,8 @@ const handle = async (name, email, password) => {
             toastr.warning('Password must contain uppercase, lowercase, number and special character');
             return;
         }
-
-        const response = await fetch("http://localhost:3000/api/v1/auth/signup", {
+        
+        const response = await fetch("https://pennywise-backend-lyz4.onrender.com/api/v1/auth/signup", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

@@ -13,8 +13,8 @@ const handleLogin = async (email, password) => {
       toastr.error('Please enter both email and password');
       return;
     }
-
-    const response = await fetch("http://localhost:3000/api/v1/auth/signin", {
+    
+    const response = await fetch("https://pennywise-backend-lyz4.onrender.com/api/v1/auth/signin", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -10,8 +10,8 @@ async function fetchAIInsights() {
         document.getElementById('errorState').classList.add('hidden');
         document.getElementById('noExpensesState').classList.add('hidden');
         document.getElementById('aiInsights').innerHTML = '';
-
-        const response = await fetch('http://localhost:3000/api/v1/insights/ai-analysis', {
+        
+        const response = await fetch('https://pennywise-backend-lyz4.onrender.com/api/v1/insights/ai-analysis', {
             headers: {
                 'token': token
             }

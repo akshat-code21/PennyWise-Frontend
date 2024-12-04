@@ -57,8 +57,8 @@ document.querySelector('#mod button').addEventListener('click', async function(e
             toastr.warning('Please enter a valid positive amount');
             return;
         }
-
-        const response = await fetch(`http://localhost:3000/api/v1/expenses/${expenseId}`, {
+        
+        const response = await fetch(`https://pennywise-backend-lyz4.onrender.com/api/v1/expenses/${expenseId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

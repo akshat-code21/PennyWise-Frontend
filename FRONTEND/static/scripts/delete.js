@@ -33,9 +33,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 toastr.warning('No expense selected for deletion');
                 return;
             }
-
+            
             try {
-                const response = await fetch(`http://localhost:3000/api/v1/expenses/${currentExpenseId}`, {
+                const response = await fetch(`https://pennywise-backend-lyz4.onrender.com/api/v1/expenses/${currentExpenseId}`, {
                     method: 'DELETE',
                     headers: {
                         'token': localStorage.getItem('token')
