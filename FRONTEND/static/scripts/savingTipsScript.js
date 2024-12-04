@@ -118,7 +118,7 @@ function formatInsights(insights) {
 
         // Create the card with improved styling
         return `
-            <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 mb-6 last:mb-0">
+             <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 mb-6 last:mb-0">
                 <div class="flex items-center gap-3 mb-4">
                     ${getIconForSection(title)}
                     <h3 class="text-xl font-bold text-[#40916c]">${title}</h3>
@@ -275,6 +275,8 @@ const additionalStyles = `
     .insight-card:hover {
         transform: translateY(-2px);
     }
+   
+
 `;
 
 // Add the styles to the document

@@ -1,33 +1,34 @@
 <%- include('partials/header') %>
 <div class="px-20 flex flex-1 justify-center py-5">
-<%-include('partials/buttons') %>
-<div id="chartContainer" class="chart-container" style="max-width: 400px; max-height: 400px;">
-    <canvas id="expensePieChart"></canvas>
-    <div id="noExpensesMessage" class="hidden text-center text-[#40916C] text-lg font-bold p-5">
-        No expenses added yet
-    <script>
-        const detail = document.querySelector('.Home');
-        detail.style.backgroundColor = '#019863';
-        detail.style.color = 'white';
-    </script>
+    <%-include('partials/buttons') %>
+    <div id="chartContainer" class="chart-container" style="max-width: 400px; max-height: 400px;">
+        <canvas id="expensePieChart"></canvas>
+        <div id="noExpensesMessage" class="hidden text-center text-[#40916C] text-lg font-bold p-5">
+            No expenses added yet
+        <script>
+            const detail = document.querySelector('.Home');
+            detail.style.backgroundColor = '#019863';
+            detail.style.color = 'white';
+        </script>
+        </div>
     </div>
-</div>
-<div class="px-4 py-3 @container">
-  <div class="flex overflow-x-auto rounded-xl border border-[#40916C] bg-[#FFFFFF]">
-    <table class="flex-1 border-collapse w-full">
-        <thead>
-            <tr class="bg-[#40916C]">
-            <th class="px-4 py-3 text-left text-[#FFFFFF] w-[400px] text-lg font-bold leading-normal">Index</th>
-            <th class="px-4 py-3 text-left text-[#FFFFFF] w-[400px] text-lg font-bold leading-normal">Category</th>
-            <th class="px-4 py-3 text-left text-[#FFFFFF] w-[400px] text-lg font-bold leading-normal">Total Amount</th>
-            <th class="px-4 py-3 text-left text-[#FFFFFF] w-[400px] text-lg font-bold leading-normal">Number of Expenses</th>
-            </tr>
-        </thead>
-        <tbody id="expenseTableBody">
-            <!-- Data will be dynamically inserted here -->
-        </tbody>
-    </table>
-  </div>
+    <div class="px-4 py-3 @container">
+    <div class="flex overflow-x-auto rounded-xl border border-[#40916C] bg-[#FFFFFF]">
+        <table class="flex-1 border-collapse w-full">
+            <thead>
+                <tr class="bg-[#40916C]">
+                <th class="px-4 py-3 text-left text-[#FFFFFF] w-[400px] text-lg font-bold leading-normal">Index</th>
+                <th class="px-4 py-3 text-left text-[#FFFFFF] w-[400px] text-lg font-bold leading-normal">Category</th>
+                <th class="px-4 py-3 text-left text-[#FFFFFF] w-[400px] text-lg font-bold leading-normal">Total Amount</th>
+                <th class="px-4 py-3 text-left text-[#FFFFFF] w-[400px] text-lg font-bold leading-normal">Number of Expenses</th>
+                </tr>
+            </thead>
+            <tbody id="expenseTableBody">
+                <!-- Data will be dynamically inserted here -->
+            </tbody>
+        </table>
+    </div>
+    </div>
 </div>
     
 <%- include('partials/footer') %>

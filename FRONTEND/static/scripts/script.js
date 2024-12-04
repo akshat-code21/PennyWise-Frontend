@@ -127,6 +127,7 @@ const addExpense = async(expenseName, category, amount) => {
         } else if (window.initializeDetailPage) {
             await window.initializeDetailPage();
         }
+      window.location.reload();
       toastr.success('Expense added successfully');
     } catch (error) {
         console.error('Error adding expense:', error);
@@ -144,7 +145,26 @@ closeBtn.onclick = function() {
 }
 
 // When the user clicks anywhere outside of the modal, close it
-overlay.onclick = function() {
+overlay.onclick = function () {
+  console.log("hello");
   popup.style.display = "none";
   overlay.style.display = "none";
+}
+
+toastr.options = {
+  "closeButton": true,
+  "debug": false,
+  "newestOnTop": false,
+  "progressBar": true,
+  "positionClass": "toast-top-right",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
 }
