@@ -3,14 +3,13 @@
 <div class="px-40 flex flex-1 justify-center py-5">
     <%- include('partials/buttons') %>
     <script>
-        // Highlight the Insights button
-        const insightsBtn = document.querySelector('button span:contains("Insights")').parentElement;
-        insightsBtn.style.backgroundColor = '#019863';
-        insightsBtn.style.color = 'white';
+        const detail = document.querySelector('.Insights');
+        detail.style.backgroundColor = '#019863';
+        detail.style.color = 'white';
     </script>
 
-    <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
-        <h1 class="text-3xl font-bold text-[#40916c] mb-8">Financial Insights</h1>
+    <div class="layout-content-container flex flex-col max-w-[960px] flex-1 pt-3">
+        <!-- <h1 class="text-3xl font-bold text-[#40916c] mb-8">Financial Insights</h1> -->
 
         <!-- Summary Cards -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
