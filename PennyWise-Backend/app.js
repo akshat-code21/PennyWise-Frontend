@@ -6,6 +6,11 @@ const { expenseRouter } = require('./routes/expense')
 const { insightsRouter } = require('./routes/insights');
 app.use(express.json());
 app.use(cors());
+app.get('/',(req,res)=>{
+    res.json({
+        message : "welcome to pennywise"
+    });
+});
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/expenses", expenseRouter);
 app.use("/api/v1/insights", insightsRouter);
